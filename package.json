@@ -1,0 +1,53 @@
+{
+    "name": "stock-watch",
+    "displayName": "Stock Watch",
+    "description": "watch stock when coding",
+    "version": "0.0.1",
+    "publisher": "xuallen",
+    "license": "MIT",
+    "keywords": [
+        "stock",
+        "vscode"
+    ],
+    "icon": "stocks.png",
+    "engines": {
+        "vscode": "^1.28.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "*"
+    ],
+    "main": "./extension",
+    "contributes": {
+        "configuration": {
+            "properties": {
+                "stock-watch.stocks": {
+                    "type": "array",
+                    "default": ["000001"],
+                    "description": "配置需要监控的股票代码"
+                },
+                "stock-watch.updateInterval": {
+                    "type": "number",
+                    "default": 10000,
+                    "description": "配置轮询请求最新数据的时间间隔，单位：毫秒"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6",
+        "eslint": "^4.11.0",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
+    },
+    "dependencies": {
+        "axios": "^0.18.0"
+    }
+}
