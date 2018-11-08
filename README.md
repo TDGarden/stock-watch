@@ -1,5 +1,6 @@
 # stock-watch
 Watching your stocks when you are coding. 
+VScode插件 | A股 | 实时股票数据
 好好工作，股票涨停！
 
 ## Configuration

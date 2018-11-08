@@ -1,8 +1,8 @@
 {
     "name": "stock-watch",
     "displayName": "Stock Watch",
-    "description": "watch stock when coding",
-    "version": "0.0.1",
+    "description": "A股 | 实时股票数据 | watch stock when coding",
+    "version": "0.0.2",
     "publisher": "xuallen",
     "license": "MIT",
     "keywords": [
@@ -49,5 +49,9 @@
     },
     "dependencies": {
         "axios": "^0.18.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/TDGarden/stock-watch"
     }
 }

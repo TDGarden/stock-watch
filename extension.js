@@ -2,12 +2,13 @@ const vscode = require('vscode');
 const axios = require('axios');
 const baseUrl = 'https://gupiao.baidu.com/api/rails/stockbasicbatch?stock_code=';
 let statusBarItems = {};
+let stockCodes = [];
+let updateInterval = 10000;
+let timer = null;
 
-function activate() {
-    const config = vscode.workspace.getConfiguration();
-    const updateInterval = config.get('stock-watch.updateInterval');
-    fetchAllData();
-    setInterval(fetchAllData, updateInterval);
+function activate(context) {
+    init();
+    context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(handleConfigChange));
 }
 exports.activate = activate;
 
@@ -15,6 +16,26 @@ function deactivate() {
 
 }
 exports.deactivate = deactivate;
+
+function init(){
+    stockCodes = getStockCodes();
+    updateInterval = getUpdateInterval();
+    fetchAllData();
+    timer = setInterval(fetchAllData, updateInterval);
+}
+
+function handleConfigChange(){
+    timer && clearInterval(timer);
+    const codes = getStockCodes();
+    Object.keys(statusBarItems).forEach((item) => {
+        if(codes.indexOf(item) === -1){
+            statusBarItems[item].hide();
+            statusBarItems[item].dispose();
+            statusBarItems[item] = false;
+        }
+    });
+    init();
+}
 
 function getStockCodes() {
     const config = vscode.workspace.getConfiguration();
@@ -24,9 +45,13 @@ function getStockCodes() {
     });
 }
 
+function getUpdateInterval() {
+    const config = vscode.workspace.getConfiguration();
+    return config.get('stock-watch.updateInterval');
+}
+
 function fetchAllData() {
-    const codes = getStockCodes();
-    axios.get(`${baseUrl}${codes.join(',')}`)
+    axios.get(`${baseUrl}${stockCodes.join(',')}`)
         .then((rep) => {
             const result = rep.data;
             if (result.errorNo === 0 && result.data.length) {
