@@ -31,7 +31,7 @@ function handleConfigChange(){
         if(codes.indexOf(item) === -1){
             statusBarItems[item].hide();
             statusBarItems[item].dispose();
-            statusBarItems[item] = false;
+            delete statusBarItems[item];
         }
     });
     init();
