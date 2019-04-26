@@ -1,8 +1,8 @@
 {
     "name": "stock-watch",
     "displayName": "Stock Watch",
-    "description": "A股 | 实时股票数据 | watch stock when coding",
-    "version": "0.0.2",
+    "description": "股票 | A股 | 实时股票数据 | watch stock when coding",
+    "version": "0.0.4",
     "publisher": "xuallen",
     "license": "MIT",
     "keywords": [
@@ -25,7 +25,9 @@
             "properties": {
                 "stock-watch.stocks": {
                     "type": "array",
-                    "default": ["000001"],
+                    "default": [
+                        "sh000001"
+                    ],
                     "description": "配置需要监控的股票代码"
                 },
                 "stock-watch.updateInterval": {

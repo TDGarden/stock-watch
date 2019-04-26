@@ -41,7 +41,11 @@ function getStockCodes() {
     const config = vscode.workspace.getConfiguration();
     const stocks = config.get('stock-watch.stocks');
     return stocks.map((code) => {
-        return (code[0] === '6' ? 'sh' : 'sz') + code;
+        if(isNaN(code[0])){
+            return code;
+        }else{
+            return (code[0] === '6' ? 'sh' : 'sz') + code;
+        }
     });
 }
 
