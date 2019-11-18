@@ -11,3 +11,6 @@
 
 ## [0.0.5]
 - bugfixed
+
+## [0.0.6]
+- bugfixed: request url
