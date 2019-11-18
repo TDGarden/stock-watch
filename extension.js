@@ -1,6 +1,6 @@
 const vscode = require('vscode');
 const axios = require('axios');
-const baseUrl = 'https://gupiao.baidu.com/api/rails/stockbasicbatch?stock_code=';
+const baseUrl = 'https://api.money.126.net/data/feed/';
 let statusBarItems = {};
 let stockCodes = [];
 let updateInterval = 10000;
@@ -42,9 +42,9 @@ function getStockCodes() {
     const stocks = config.get('stock-watch.stocks');
     return stocks.map((code) => {
         if(isNaN(code[0])){
-            return code;
+            return code.toLowerCase().replace('sz', '1').replace('sh', '0');
         }else{
-            return (code[0] === '6' ? 'sh' : 'sz') + code;
+            return (code[0] === '6' ? '0' : '1') + code;
         }
     });
 }
@@ -55,12 +55,19 @@ function getUpdateInterval() {
 }
 
 function fetchAllData() {
-    axios.get(`${baseUrl}${stockCodes.join(',')}`)
+    axios.get(`${baseUrl}${stockCodes.join(',')}?callback=a`)
         .then((rep) => {
-            const result = rep.data;
-            if (result.errorNo === 0 && result.data.length) {
-                displayData(result.data);
+            try {
+                const result = JSON.parse(rep.data.slice(2,-2));
+                let data = [];
+                Object.keys(result).map(item => {
+                    data.push(result[item])
+                })
+                displayData(data);
+            } catch (error) {
+                
             }
+
         }, (error) => {
             console.error(error);
         }).catch((error) => {
@@ -70,9 +77,9 @@ function fetchAllData() {
 
 function displayData(data) {
     data.map((item) => {
-        const key = item.exchange + item.stockCode;
+        const key = item.code;
         if (statusBarItems[key]) {
-            statusBarItems[key].text = `「${item.stockName}」${keepTwoDecimal(item.close)} ${item.netChangeRatio > 0 ? '📈' : '📉'} ${keepTwoDecimal(item.netChangeRatio)}%`;
+            statusBarItems[key].text = `「${item.name}」${keepTwoDecimal(item.price)} ${item.percent > 0 ? '📈' : '📉'} ${keepTwoDecimal(item.percent * 100)}%`;
         } else {
             statusBarItems[key] = createStatusBarItem(item);
         }
@@ -80,7 +87,7 @@ function displayData(data) {
 }
 
 function createStatusBarItem(item) {
-    const message = `「${item.stockName}」${keepTwoDecimal(item.close)} ${item.netChangeRatio > 0 ? '📈' : '📉'} ${keepTwoDecimal(item.netChangeRatio)}%`;
+    const message = `「${item.name}」${keepTwoDecimal(item.price)} ${item.percent > 0 ? '📈' : '📉'} ${keepTwoDecimal(item.percent * 100)}%`;
     const barItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
     barItem.text = message;
     barItem.show();
