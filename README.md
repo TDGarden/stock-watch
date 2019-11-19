@@ -17,4 +17,14 @@ GitHub: https://github.com/TDGarden/stock-watch 欢迎PR、star
 
   // 配置轮询请求最新数据的时间间隔
   "stock-watch.updateInterval": 10000
+
+
+  // 配置股票涨的颜色，默认为white。为什么不是red，红色像是报错，很刺眼。
+  "stock-watch.riseColor": "white"
+
+
+  // 配置股票跌的颜色，默认为green
+  "stock-watch.fallColor": "green"
+
+
 ```

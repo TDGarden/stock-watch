@@ -54,6 +54,22 @@ function getUpdateInterval() {
     return config.get('stock-watch.updateInterval');
 }
 
+function getItemText(item) {
+    return `「${item.name}」${keepTwoDecimal(item.price)} ${item.percent >= 0 ? '📈' : '📉'} ${keepTwoDecimal(item.percent * 100)}%`;
+}
+
+function getTooltipText(item) {
+    return `【今日行情】\n涨跌：${item.updown}   百分：${keepTwoDecimal(item.percent * 100)}%\n最高：${item.high}   最低：${item.low}\n今开：${item.open}   昨收：${item.yestclose}`;
+}
+
+function getItemColor(item) {
+    const config = vscode.workspace.getConfiguration();
+    const riseColor = config.get('stock-watch.riseColor');
+    const fallColor = config.get('stock-watch.fallColor');
+
+    return item.percent >= 0 ? riseColor : fallColor;
+}
+
 function fetchAllData() {
     axios.get(`${baseUrl}${stockCodes.join(',')}?callback=a`)
         .then((rep) => {
@@ -79,7 +95,9 @@ function displayData(data) {
     data.map((item) => {
         const key = item.code;
         if (statusBarItems[key]) {
-            statusBarItems[key].text = `「${item.name}」${keepTwoDecimal(item.price)} ${item.percent > 0 ? '📈' : '📉'} ${keepTwoDecimal(item.percent * 100)}%`;
+            statusBarItems[key].text = getItemText(item);
+            statusBarItems[key].color = getItemColor(item);
+            statusBarItems[key].tooltip = getTooltipText(item);
         } else {
             statusBarItems[key] = createStatusBarItem(item);
         }
@@ -87,9 +105,10 @@ function displayData(data) {
 }
 
 function createStatusBarItem(item) {
-    const message = `「${item.name}」${keepTwoDecimal(item.price)} ${item.percent > 0 ? '📈' : '📉'} ${keepTwoDecimal(item.percent * 100)}%`;
     const barItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
-    barItem.text = message;
+    barItem.text = getItemText(item);
+    barItem.color = getItemColor(item);
+    barItem.tooltip = getTooltipText(item);
     barItem.show();
     return barItem;
 }

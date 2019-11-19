@@ -14,3 +14,8 @@
 
 ## [0.0.6]
 - bugfixed: request url
+
+
+## [0.0.7]
+- feat[1]: show more info when hover
+- feat[2]: support config color

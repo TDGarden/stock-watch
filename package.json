@@ -2,7 +2,7 @@
     "name": "stock-watch",
     "displayName": "Stock Watch",
     "description": "股票 | A股 | 实时股票数据 | watch stock when coding",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "publisher": "xuallen",
     "license": "MIT",
     "keywords": [
@@ -34,6 +34,16 @@
                     "type": "number",
                     "default": 10000,
                     "description": "配置轮询请求最新数据的时间间隔，单位：毫秒"
+                },
+                "stock-watch.riseColor": {
+                    "type": "string",
+                    "default": "white",
+                    "description": "股票涨的颜色"
+                },
+                "stock-watch.fallColor": {
+                    "type": "string",
+                    "default": "green",
+                    "description": "股票跌的颜色"
                 }
             }
         }
