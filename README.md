@@ -1,6 +1,6 @@
 # stock-watch
 Watching your stocks when you are coding. 
-VScode插件 | A股 | 实时股票数据
+VScode插件 | A股 | 港股 | 实时股票数据
 好好工作，股票涨停！
 GitHub: https://github.com/TDGarden/stock-watch 欢迎PR、star
 
@@ -9,6 +9,7 @@ GitHub: https://github.com/TDGarden/stock-watch 欢迎PR、star
 ```
   // 配置需要监控的股票代码
   // 可根据沪市深市分别加上sh、sz前缀，亦可不加
+  // 港股股票代码前面需要加上hk前缀，如hk09988即可监控阿里巴巴港股
   // 不加前缀的情况下，6开头的代码默认加上sh，其余加上sz
   // 需要查看上证指数，代码为sh000001
   "stock-watch.stocks": [
