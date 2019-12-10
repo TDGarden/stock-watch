@@ -42,7 +42,12 @@ function getStockCodes() {
     const stocks = config.get('stock-watch.stocks');
     return stocks.map((code) => {
         if(isNaN(code[0])){
-            return code.toLowerCase().replace('sz', '1').replace('sh', '0');
+            if(code.toLowerCase().indexOf('us_') > -1){
+                return code.toUpperCase();
+            }else{
+                return code.toLowerCase().replace('sz', '1').replace('sh', '0');
+            }
+            
         }else{
             return (code[0] === '6' ? '0' : '1') + code;
         }
@@ -78,7 +83,7 @@ function fetchAllData() {
                 let data = [];
                 Object.keys(result).map(item => {
                     if(!result[item].code){
-                        result[item].code = item; //兼容港股
+                        result[item].code = item; //兼容港股美股
                     }
                     data.push(result[item])
                 })

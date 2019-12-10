@@ -22,3 +22,7 @@
 
 ## [0.1.0]
 - feat: support hk
+
+
+## [0.1.1]
+- feat: support American stock market
