@@ -77,6 +77,9 @@ function fetchAllData() {
                 const result = JSON.parse(rep.data.slice(2,-2));
                 let data = [];
                 Object.keys(result).map(item => {
+                    if(!result[item].code){
+                        result[item].code = item; //兼容港股
+                    }
                     data.push(result[item])
                 })
                 displayData(data);

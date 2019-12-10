@@ -19,3 +19,6 @@
 ## [0.0.7]
 - feat[1]: show more info when hover
 - feat[2]: support config color
+
+## [0.1.0]
+- feat: support hk
