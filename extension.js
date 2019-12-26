@@ -44,6 +44,8 @@ function getStockCodes() {
         if(isNaN(code[0])){
             if(code.toLowerCase().indexOf('us_') > -1){
                 return code.toUpperCase();
+            }else if(code.indexOf('hk') > -1){
+                return code;
             }else{
                 return code.toLowerCase().replace('sz', '1').replace('sh', '0');
             }

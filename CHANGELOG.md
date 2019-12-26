@@ -26,3 +26,7 @@
 
 ## [0.1.1]
 - feat: support American stock market
+
+
+## [0.1.2]
+- feat: support American and hk stock index

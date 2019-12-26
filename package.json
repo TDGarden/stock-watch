@@ -2,7 +2,7 @@
     "name": "stock-watch",
     "displayName": "Stock Watch",
     "description": "股票 | A股港股美股 | 实时股票数据 | watch stock when coding",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "publisher": "xuallen",
     "license": "MIT",
     "keywords": [
