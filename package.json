@@ -24,7 +24,7 @@
         "configuration": {
             "properties": {
                 "stock-watch.stocks": {
-                    "type": "array",
+                    "type": ["array","object"],
                     "default": [
                         "sh000001"
                     ],
