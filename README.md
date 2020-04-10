@@ -44,5 +44,7 @@ GitHub: https://github.com/TDGarden/stock-watch 欢迎PR、star
   // 配置股票跌的颜色，默认为green
   "stock-watch.fallColor": "green"
 
+  // 配置价格小数保留位数
+  "stock-watch.pricePrecision": 2
 
 ```

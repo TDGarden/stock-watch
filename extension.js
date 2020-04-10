@@ -124,9 +124,13 @@ function createStatusBarItem(item) {
 }
 
 function keepTwoDecimal(num) {
+    const config = vscode.workspace.getConfiguration();
     var result = parseFloat(num);
     if (isNaN(result)) {
         return '--';
     }
-    return result.toFixed(2);
+
+    var precision = config.get('stock-watch.pricePrecision')
+    precision = precision < 0 ? 0 :precision;
+    return result.toFixed(precision);
 }

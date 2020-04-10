@@ -44,6 +44,11 @@
                     "type": "string",
                     "default": "green",
                     "description": "股票跌的颜色"
+                },
+                "stock-watch.pricePrecision": {
+                    "type": "number",
+                    "default": 2,
+                    "description": "配置价格小数保留位数"
                 }
             }
         }
