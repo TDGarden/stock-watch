@@ -62,7 +62,7 @@ function getUpdateInterval() {
 }
 
 function getItemText(item) {
-    return `「${item.name}」${keepTwoDecimal(item.price)} ${item.percent >= 0 ? '📈' : '📉'} ${keepTwoDecimal(item.percent * 100)}%`;
+    return `「${item.name}」${item.price} ${item.percent >= 0 ? '📈' : '📉'} ${keepTwoDecimal(item.percent * 100)}%`;
 }
 
 function getTooltipText(item) {
