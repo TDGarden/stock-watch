@@ -144,3 +144,4 @@ function calcFixedNumber(item) {
     
     return max
 }
+
