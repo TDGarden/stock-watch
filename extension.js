@@ -136,7 +136,8 @@ function calcFixedNumber(item) {
     var low = String(item.low).indexOf('.') === -1 ? 0 : String(item.low).length - String(item.low).indexOf('.') - 1;
     var open = String(item.open).indexOf('.') === -1 ? 0 : String(item.open).length - String(item.open).indexOf('.') - 1;
     var yest = String(item.yestclose).indexOf('.') === -1 ? 0 : String(item.yestclose).length - String(item.yestclose).indexOf('.') - 1;
-    var max = Math.max(high, low, open, yest);
+    var updown = String(item.updown).indexOf('.') === -1 ? 0 : String(item.updown).length - String(item.updown).indexOf('.') - 1;
+    var max = Math.max(high, low, open, yest, updown);
   
     if (max === 0) {
         max = 2;
