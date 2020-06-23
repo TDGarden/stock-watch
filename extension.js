@@ -66,7 +66,7 @@ function getItemText(item) {
 }
 
 function getTooltipText(item) {
-    return `【今日行情】\n涨跌：${item.updown}   百分：${keepDecimal(item.percent * 100, 2)}%\n最高：${item.high}   最低：${item.low}\n今开：${item.open}   昨收：${item.yestclose}`;
+    return `【今日行情】${item.type}${item.symbol}\n涨跌：${item.updown}   百分：${keepDecimal(item.percent * 100, 2)}%\n最高：${item.high}   最低：${item.low}\n今开：${item.open}   昨收：${item.yestclose}`;
 }
 
 function getItemColor(item) {
