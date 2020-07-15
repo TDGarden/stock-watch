@@ -25,6 +25,8 @@ function init() {
 		updateInterval = getUpdateInterval();
 		fetchAllData();
 		timer = setInterval(fetchAllData, updateInterval);
+	} else {
+		hideAllStatusBar();
 	}
 }
 
@@ -35,12 +37,16 @@ function initShowTimeChecker() {
 			init();
 		} else {
 			timer && clearInterval(timer);
-			Object.keys(statusBarItems).forEach((item) => {
-				statusBarItems[item].hide();
-				statusBarItems[item].dispose();
-			});
+			hideAllStatusBar();
 		}
 	}, 1000 * 60 * 10);
+}
+
+function hideAllStatusBar() {
+	Object.keys(statusBarItems).forEach((item) => {
+		statusBarItems[item].hide();
+		statusBarItems[item].dispose();
+	});
 }
 
 function handleConfigChange() {
