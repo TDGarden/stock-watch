@@ -1,11 +1,14 @@
 # stock-watch
-Watching your stocks when you are coding. 
-VScode插件 | A股 | 港股 | 实时股票数据
+
+Watching your stocks when you are coding.
+VScode 插件 | A 股 | 港股 | 实时股票数据
 好好工作，股票涨停！
-GitHub: https://github.com/TDGarden/stock-watch 欢迎PR、star
+GitHub: https://github.com/TDGarden/stock-watch 欢迎 PR、star
 
 ## Configuration
+
 修改用户配置，添加你所需要监控的股票代码
+
 ```
   // 配置需要监控的股票代码
   // 可根据沪市深市分别加上sh、sz前缀，亦可不加
@@ -14,7 +17,7 @@ GitHub: https://github.com/TDGarden/stock-watch 欢迎PR、star
 
   // 港股股票代码前面需要加上hk前缀，如hk09988即可监控阿里巴巴港股
   // 港股指数代码如下
-  // 1.工商指数: hkHSC	
+  // 1.工商指数: hkHSC
   // 2.恒生中国企业指数: hkHSCEI
   // 3.恒生指数: hkHSI
   // 4.红筹指数: hkHSCCI
@@ -25,10 +28,10 @@ GitHub: https://github.com/TDGarden/stock-watch 欢迎PR、star
 
   // 美股股票代码前面需要加上US_前缀，如US_AAPL即可监控苹果股票行情
   // 美股指数代码如下
-  // 1.道琼斯指数: US_DOWJONES	
+  // 1.道琼斯指数: US_DOWJONES
   // 2.纳斯达克: US_NASDAQ
   // 3.标普500: US_SP500
-  
+
   "stock-watch.stocks": [
     "000001"
   ],
@@ -43,6 +46,9 @@ GitHub: https://github.com/TDGarden/stock-watch 欢迎PR、star
 
   // 配置股票跌的颜色，默认为green
   "stock-watch.fallColor": "green"
+
+  // 配置展示的时间段，默认为[9, 15]，每十分钟判断一下
+  "stock-watch.showTime": [9, 15]
 
 
 ```

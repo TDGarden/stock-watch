@@ -1,69 +1,77 @@
 {
-    "name": "stock-watch",
-    "displayName": "Stock Watch",
-    "description": "股票 | A股港股美股 | 实时股票数据 | watch stock when coding",
-    "version": "0.1.2",
-    "publisher": "xuallen",
-    "license": "MIT",
-    "keywords": [
-        "stock",
-        "vscode"
-    ],
-    "icon": "stocks.png",
-    "engines": {
-        "vscode": "^1.28.0"
-    },
-    "categories": [
-        "Other"
-    ],
-    "activationEvents": [
-        "*"
-    ],
-    "main": "./extension",
-    "contributes": {
-        "configuration": {
-            "properties": {
-                "stock-watch.stocks": {
-                    "type": "array",
-                    "default": [
-                        "sh000001"
-                    ],
-                    "description": "配置需要监控的股票代码，港股请加上hk前缀，美股加上US_前缀"
-                },
-                "stock-watch.updateInterval": {
-                    "type": "number",
-                    "default": 10000,
-                    "description": "配置轮询请求最新数据的时间间隔，单位：毫秒"
-                },
-                "stock-watch.riseColor": {
-                    "type": "string",
-                    "default": "white",
-                    "description": "股票涨的颜色"
-                },
-                "stock-watch.fallColor": {
-                    "type": "string",
-                    "default": "green",
-                    "description": "股票跌的颜色"
-                }
-            }
-        }
-    },
-    "scripts": {
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "typescript": "^2.6.1",
-        "vscode": "^1.1.6",
-        "eslint": "^4.11.0",
-        "@types/node": "^7.0.43",
-        "@types/mocha": "^2.2.42"
-    },
-    "dependencies": {
-        "axios": "^0.18.0"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/TDGarden/stock-watch"
-    }
+	"name": "stock-watch",
+	"displayName": "Stock Watch",
+	"description": "股票 | A股港股美股 | 实时股票数据 | watch stock when coding",
+	"version": "0.1.3",
+	"publisher": "xuallen",
+	"license": "MIT",
+	"keywords": [
+		"stock",
+		"vscode"
+	],
+	"icon": "stocks.png",
+	"engines": {
+		"vscode": "^1.28.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./extension",
+	"contributes": {
+		"configuration": {
+			"properties": {
+				"stock-watch.stocks": {
+					"type": "array",
+					"default": [
+						"sh000001"
+					],
+					"description": "配置需要监控的股票代码，港股请加上hk前缀，美股加上US_前缀"
+				},
+				"stock-watch.updateInterval": {
+					"type": "number",
+					"default": 10000,
+					"description": "配置轮询请求最新数据的时间间隔，单位：毫秒"
+				},
+				"stock-watch.riseColor": {
+					"type": "string",
+					"default": "white",
+					"description": "股票涨的颜色"
+				},
+				"stock-watch.fallColor": {
+					"type": "string",
+					"default": "green",
+					"description": "股票跌的颜色"
+				},
+				"stock-watch.showTime": {
+					"type": "array",
+					"default": [
+						9,
+						15
+					],
+					"description": "显示的时间段"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^2.6.1",
+		"vscode": "^1.1.6",
+		"eslint": "^4.11.0",
+		"@types/node": "^7.0.43",
+		"@types/mocha": "^2.2.42"
+	},
+	"dependencies": {
+		"axios": "^0.18.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/TDGarden/stock-watch"
+	}
 }
