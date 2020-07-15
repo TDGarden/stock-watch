@@ -62,11 +62,11 @@ function getUpdateInterval() {
 }
 
 function getItemText(item) {
-    return `「${item.name}」${keepTwoDecimal(item.price)} ${item.percent >= 0 ? '📈' : '📉'} ${keepTwoDecimal(item.percent * 100)}%`;
+    return `「${item.name}」${keepDecimal(item.price, calcFixedNumber(item))} ${item.percent >= 0 ? '📈' : '📉'} ${keepDecimal(item.percent * 100, 2)}%`;
 }
 
 function getTooltipText(item) {
-    return `【今日行情】\n涨跌：${item.updown}   百分：${keepTwoDecimal(item.percent * 100)}%\n最高：${item.high}   最低：${item.low}\n今开：${item.open}   昨收：${item.yestclose}`;
+    return `【今日行情】${item.type}${item.symbol}\n涨跌：${item.updown}   百分：${keepDecimal(item.percent * 100, 2)}%\n最高：${item.high}   最低：${item.low}\n今开：${item.open}   昨收：${item.yestclose}`;
 }
 
 function getItemColor(item) {
@@ -123,10 +123,26 @@ function createStatusBarItem(item) {
     return barItem;
 }
 
-function keepTwoDecimal(num) {
+function keepDecimal(num, fixed) {
     var result = parseFloat(num);
     if (isNaN(result)) {
         return '--';
     }
-    return result.toFixed(2);
+    return result.toFixed(fixed);
 }
+
+function calcFixedNumber(item) {
+    var high = String(item.high).indexOf('.') === -1 ? 0 : String(item.high).length - String(item.high).indexOf('.') - 1;
+    var low = String(item.low).indexOf('.') === -1 ? 0 : String(item.low).length - String(item.low).indexOf('.') - 1;
+    var open = String(item.open).indexOf('.') === -1 ? 0 : String(item.open).length - String(item.open).indexOf('.') - 1;
+    var yest = String(item.yestclose).indexOf('.') === -1 ? 0 : String(item.yestclose).length - String(item.yestclose).indexOf('.') - 1;
+    var updown = String(item.updown).indexOf('.') === -1 ? 0 : String(item.updown).length - String(item.updown).indexOf('.') - 1;
+    var max = Math.max(high, low, open, yest, updown);
+  
+    if (max === 0) {
+        max = 2;
+    }
+    
+    return max
+}
+
