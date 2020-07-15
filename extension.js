@@ -159,7 +159,8 @@ function displayData(data) {
 
 function createStatusBarItem(item) {
 	const barItem = vscode.window.createStatusBarItem(
-		vscode.StatusBarAlignment.Left
+		vscode.StatusBarAlignment.Left,
+		0 - stockCodes.indexOf(item.code)
 	);
 	barItem.text = getItemText(item);
 	barItem.color = getItemColor(item);
